@@ -1,0 +1,927 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Lotous Nails — European Manicure, South Tampa</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cardo:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap"
+    rel="stylesheet"
+  />
+  <!-- Distant Stroke (Youssef Habchi) — hosted via onlinewebfonts CDN for preview -->
+  <link
+    href="https://db.onlinewebfonts.com/c/c13436e92bba43be20c5385982d9ac2e?family=DistantStroke-Medium"
+    rel="stylesheet"
+  />
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            ink: "#0E0E0C",
+            bone: "#F7F4EE",
+            paper: "#FBF9F5",
+            stone: "#E6DFD2",
+            sand: "#B9A98C",
+            clay: "#8C7A5E",
+            ash: "#6E665B",
+          },
+          fontFamily: {
+            display: ['DistantStroke-Medium', 'Cardo', "Georgia", "serif"],
+            'display-alt': ['MillerDisplay-LightItalic', '"Miller Display Light Italic"', '"Miller Display"', 'Cardo', "Georgia", "serif"],
+            sans: ['Inter', "system-ui", "sans-serif"],
+          },
+          letterSpacing: {
+            'wider-2': '0.18em',
+            'widest-2': '0.32em',
+          },
+        },
+      },
+    };
+  </script>
+
+  <style>
+    html { scroll-behavior: smooth; }
+    body {
+      background-color: #FBF9F5;
+      color: #0E0E0C;
+      font-family: Inter, system-ui, sans-serif;
+      font-weight: 400;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+    .font-display { font-family: 'DistantStroke-Medium', Cardo, Georgia, serif; font-synthesis: none; }
+    .font-display-alt {
+      font-family: 'MillerDisplay-LightItalic', 'Miller Display Light Italic', 'Miller Display', Cardo, Georgia, serif;
+      font-style: italic;
+      font-weight: 300;
+    }
+
+    /* Eyebrow */
+    .eyebrow {
+      font-size: 11px;
+      letter-spacing: 0.32em;
+      text-transform: uppercase;
+      font-weight: 500;
+    }
+
+    /* Nav link underline */
+    .nav-link {
+      position: relative;
+    }
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: -4px;
+      height: 1px;
+      width: 0;
+      background: currentColor;
+      transition: width .3s ease;
+    }
+    .nav-link:hover::after { width: 100%; }
+
+    /* Menu dotted leader (spa menu pricing) */
+    .menu-row {
+      display: flex;
+      align-items: baseline;
+      gap: 1rem;
+    }
+    .menu-row .leader {
+      flex: 1;
+      border-bottom: 1px dotted #B9A98C;
+      transform: translateY(-4px);
+      min-width: 2rem;
+    }
+
+    /* Hero overlay gradient (graceful fallback when bg image missing) */
+    .hero-bg {
+      background-color: #1A1714;
+      background-image: linear-gradient(180deg, rgba(14,14,12,0.20) 0%, rgba(14,14,12,0.10) 45%, rgba(14,14,12,0.35) 100%), url('hero.png');
+      background-size: cover;
+      background-position: center;
+    }
+    .banner-bg-1 {
+      background-color: #2a241d;
+      background-image: linear-gradient(90deg, rgba(14,14,12,0.55) 0%, rgba(14,14,12,0.15) 70%), url('public/salon2.jpg');
+      background-size: cover;
+      background-position: center;
+    }
+    .banner-bg-2 {
+      background-color: #1f1c17;
+      background-image: linear-gradient(180deg, rgba(14,14,12,0.45) 0%, rgba(14,14,12,0.55) 100%), url('public/1.jpg');
+      background-size: cover;
+      background-position: center;
+    }
+
+    /* Marquee for trust strip */
+    @keyframes marquee {
+      from { transform: translateX(0); }
+      to   { transform: translateX(-50%); }
+    }
+    .marquee-track {
+      display: flex;
+      width: max-content;
+      animation: marquee 35s linear infinite;
+    }
+
+    /* Accordion */
+    details > summary { list-style: none; cursor: pointer; }
+    details > summary::-webkit-details-marker { display: none; }
+    details[open] .chev { transform: rotate(45deg); }
+    .chev { transition: transform .25s ease; }
+
+    /* Underline-grow link */
+    .ed-link {
+      position: relative;
+      display: inline-block;
+      padding-bottom: 4px;
+    }
+    .ed-link::after {
+      content: '';
+      position: absolute;
+      left: 0; bottom: 0;
+      width: 100%;
+      height: 1px;
+      background: currentColor;
+      transform-origin: left;
+      transition: transform .35s ease;
+    }
+    .ed-link:hover::after {
+      transform: scaleX(0);
+      transform-origin: right;
+    }
+
+    /* Subtle grain overlay */
+    .grain::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.07 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+      pointer-events: none;
+      mix-blend-mode: multiply;
+      opacity: .35;
+    }
+
+    /* Reveal on scroll - simple */
+    .reveal { opacity: 0; transform: translateY(12px); transition: opacity .8s ease, transform .8s ease; }
+    .reveal.in { opacity: 1; transform: none; }
+
+    /* ============================================
+       Chanel-style reveal footer.
+       The page content sits above the footer with a solid background.
+       The footer is fixed at the bottom of the viewport, full-height,
+       and is gradually revealed as the page content scrolls up past it.
+       ============================================ */
+    .page-content {
+      position: relative;
+      z-index: 2;
+      background-color: #FBF9F5;
+      /* Reserve a viewport's worth of scroll space below the content so
+         the fixed footer is gradually uncovered as the page scrolls past it. */
+      margin-bottom: 100vh;
+      margin-bottom: 100dvh;
+    }
+    .reveal-footer {
+      position: fixed;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      height: 100vh;
+      height: 100dvh;
+      z-index: 1;
+      overflow: hidden;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="page-content">
+
+  <!-- Top utility bar -->
+  <div class="bg-ink text-bone">
+    <div class="mx-auto max-w-[1400px] px-6 lg:px-10 flex items-center justify-between text-[11px] tracking-wider-2 uppercase leading-none py-1">
+      <span class="hidden sm:inline">3302 W Cypress St, Tampa · By Appointment</span>
+      <span class="sm:hidden">By Appointment</span>
+      <div class="flex items-center gap-5">
+        <a href="tel:+18135737178" class="hover:text-stone transition">(813) 573-7178</a>
+        <span class="hidden md:inline opacity-50">|</span>
+        <a href="https://wa.me/18138973013" class="hidden md:inline hover:text-stone transition">WhatsApp</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Nav -->
+  <header class="sticky top-0 z-50 bg-paper/95 backdrop-blur border-b border-ink/10">
+    <div class="mx-auto max-w-[1400px] px-6 lg:px-10 grid grid-cols-3 items-center py-2">
+      <nav class="hidden md:flex items-center gap-8 text-[11px] tracking-wider-2 uppercase font-medium" aria-label="Primary">
+        <a href="#menu" class="nav-link">Spa Menu</a>
+        <a href="#gallery" class="nav-link">Gallery</a>
+        <a href="#about" class="nav-link">About</a>
+        <a href="#faq" class="nav-link">Our policy</a>
+      </nav>
+      <button class="md:hidden justify-self-start inline-flex items-center justify-center min-h-[44px] min-w-[44px] -ml-2" aria-label="Open menu">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="3" y1="7" x2="21" y2="7"/><line x1="3" y1="17" x2="21" y2="17"/></svg>
+      </button>
+
+      <a href="#" class="justify-self-center inline-block" aria-label="Lotous Nails — home">
+        <img src="logo.webp" alt="Lotous Nails by Elizabeth Lotous" class="h-[60px] md:h-[72px] w-auto" />
+      </a>
+
+      <div class="justify-self-end flex items-center gap-5 text-[11px] tracking-wider-2 uppercase font-medium">
+        <a href="#faq" class="hidden md:inline nav-link">FAQ</a>
+        <a href="#booking" class="border border-ink px-5 py-2.5 hover:bg-ink hover:text-paper transition">Book</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- ========== Hero ========== -->
+    <section class="bg-paper" aria-label="Hero">
+
+      <!-- Full-page image with CTAs + value strip overlay -->
+      <div class="relative w-full hero-bg grain h-[calc(100vh-180px)] min-h-[600px] overflow-hidden flex flex-col text-paper">
+        <!-- Subtle corner indicators -->
+        <div class="absolute top-6 left-6 lg:top-8 lg:left-10 text-paper/80 eyebrow">
+          — South Tampa, Florida
+        </div>
+        <div class="absolute top-6 right-6 lg:top-8 lg:right-10 text-paper/70 text-[10px] tracking-widest-2 uppercase z-10">
+          <span class="hidden sm:inline">N° 01 — </span>The studio
+        </div>
+
+        <!-- CTAs positioned in the lower third of the photo -->
+        <div class="relative z-10 flex-1 flex items-end justify-center px-6 lg:px-10 pb-12 lg:pb-16">
+          <div class="flex flex-col sm:flex-row gap-4 sm:gap-5 items-center justify-center">
+            <a href="#booking" class="inline-flex items-center justify-center gap-3 bg-paper text-ink min-w-[240px] px-8 py-4 text-[11px] tracking-wider-2 uppercase font-medium hover:bg-stone transition">
+              Book appointment
+              <span aria-hidden="true">→</span>
+            </a>
+            <a href="#menu" class="inline-flex items-center justify-center gap-3 border border-paper text-paper min-w-[240px] px-8 py-4 text-[11px] tracking-wider-2 uppercase font-medium hover:bg-paper hover:text-ink transition">
+              View our menu
+              <span aria-hidden="true">→</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Four-column value strip pinned to bottom of hero -->
+        <div class="relative z-10 mx-auto max-w-[1400px] w-full px-6 lg:px-10 pb-10 lg:pb-14">
+          <div class="grid grid-cols-2 lg:grid-cols-4 gap-y-10 gap-x-10 border-t border-paper/25 pt-8 lg:pt-10">
+
+            <div class="text-center">
+              <p class="text-paper/50 text-[10px] tracking-widest-2 uppercase mb-3">N° 01</p>
+              <p class="font-display-alt text-[clamp(1.25rem,2vw,1.85rem)] leading-[1.1]">
+                Medical-grade hygiene
+              </p>
+              <p class="mt-3 text-paper/65 text-[12.5px] leading-[1.7] tracking-wide">
+                Sterilized tooling <span class="text-paper/30 mx-1">/</span> Private suite <span class="text-paper/30 mx-1">/</span> Single-use files
+              </p>
+            </div>
+
+            <div class="text-center">
+              <p class="text-paper/50 text-[10px] tracking-widest-2 uppercase mb-3">N° 02</p>
+              <p class="font-display-alt text-[clamp(1.25rem,2vw,1.85rem)] leading-[1.1]">
+                European precision
+              </p>
+              <p class="mt-3 text-paper/65 text-[12.5px] leading-[1.7] tracking-wide">
+                Dry technique <span class="text-paper/30 mx-1">/</span> No water <span class="text-paper/30 mx-1">/</span> No cutting
+              </p>
+            </div>
+
+            <div class="text-center">
+              <p class="text-paper/50 text-[10px] tracking-widest-2 uppercase mb-3">N° 03</p>
+              <p class="font-display-alt text-[clamp(1.25rem,2vw,1.85rem)] leading-[1.1]">
+                Signature sets
+              </p>
+              <p class="mt-3 text-paper/65 text-[12.5px] leading-[1.7] tracking-wide">
+                Refined <span class="text-paper/30 mx-1">/</span> Intentional <span class="text-paper/30 mx-1">/</span> Built to last
+              </p>
+            </div>
+
+            <div class="text-center">
+              <p class="text-paper/50 text-[10px] tracking-widest-2 uppercase mb-3">N° 04</p>
+              <p class="font-display-alt text-[clamp(1.25rem,2vw,1.85rem)] leading-[1.1]">
+                By appointment
+              </p>
+              <p class="mt-3 text-paper/65 text-[12.5px] leading-[1.7] tracking-wide">
+                3302 W Cypress St, Tampa<br/>
+                <span class="text-paper/80">(813) 573-7178</span>
+              </p>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== Trust strip (marquee) ========== -->
+    <section class="border-y border-ink/10 bg-paper py-5 overflow-hidden">
+      <div class="marquee-track text-ink/70">
+        <div class="flex items-center gap-12 pr-12 text-[11px] tracking-wider-2 uppercase font-medium whitespace-nowrap">
+          Licensed Specialists<span class="opacity-30">✦</span>
+          European Dry Technique<span class="opacity-30">✦</span>
+          Sterilized Tooling<span class="opacity-30">✦</span>
+          1800+ Clients<span class="opacity-30">✦</span>
+          4.9★ Rated<span class="opacity-30">✦</span>
+          Three to Four Weeks Wear<span class="opacity-30">✦</span>
+          Tampa, FL<span class="opacity-30">✦</span>
+        </div>
+        <div class="flex items-center gap-12 pr-12 text-[11px] tracking-wider-2 uppercase font-medium whitespace-nowrap" aria-hidden="true">
+          Licensed Specialists<span class="opacity-30">✦</span>
+          European Dry Technique<span class="opacity-30">✦</span>
+          Sterilized Tooling<span class="opacity-30">✦</span>
+          1800+ Clients<span class="opacity-30">✦</span>
+          4.9★ Rated<span class="opacity-30">✦</span>
+          Three to Four Weeks Wear<span class="opacity-30">✦</span>
+          Tampa, FL<span class="opacity-30">✦</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== Editorial Intro ========== -->
+    <section class="bg-paper py-24 lg:py-32 px-6 lg:px-10">
+      <div class="mx-auto max-w-[1400px] grid grid-cols-12 gap-8 lg:gap-12 items-end">
+        <div class="col-span-12 lg:col-span-2">
+          <p class="eyebrow text-clay">N° 02 / Approach</p>
+        </div>
+        <div class="col-span-12 lg:col-span-7">
+          <h2 class="font-display text-[clamp(3rem,7.2vw,6rem)] leading-[0.95]">
+            Healthier nails.<br/>
+            Cleaner finish.<br/>
+            Lasting wear.
+          </h2>
+        </div>
+        <div class="col-span-12 lg:col-span-3 lg:col-start-10 self-start lg:pt-3">
+          <p class="text-ash leading-relaxed text-[15px]">
+            We specialize exclusively in the European manicure — a precise, dry technique that protects nail health while delivering a finish you can wear for three to four weeks without compromise.
+          </p>
+          <a href="#about" class="mt-6 inline-block ed-link text-[11px] tracking-wider-2 uppercase font-medium">Read the philosophy</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== Specialists / Team ========== -->
+    <section id="team" class="bg-stone/40 py-24 lg:py-32 px-6 lg:px-10">
+      <div class="mx-auto max-w-[1400px]">
+        <header class="mb-14 lg:mb-20 grid grid-cols-12 gap-6 items-end">
+          <div class="col-span-12 md:col-span-7">
+            <p class="eyebrow text-clay mb-4">N° 07 / Specialists</p>
+            <h2 class="font-display text-[clamp(3rem,7.2vw,6rem)] leading-[0.95]">
+              The hands behind<br/>the work.
+            </h2>
+          </div>
+          <div class="col-span-12 md:col-span-5 md:text-right">
+            <p class="text-ash text-[15px] max-w-sm md:ml-auto leading-relaxed">
+              Each of our specialists is trained in the European dry technique. Eight pairs of hands, one shared standard.
+            </p>
+          </div>
+        </header>
+
+        <!-- 4 × 2 grid of specialists -->
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-x-4 gap-y-12 md:gap-x-6 md:gap-y-16">
+
+          <article class="group">
+            <div class="aspect-[4/5] bg-stone/60 overflow-hidden mb-5 relative flex items-center justify-center">
+              <span class="absolute text-[10px] tracking-widest-2 uppercase text-ash/50 pointer-events-none">employee-1.jpg</span>
+              <img src="employee-1.jpg" alt="Employee 1" class="relative h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.03]" onerror="this.style.display='none'"/>
+            </div>
+            <p class="eyebrow text-clay mb-2">Lead Specialist</p>
+            <h3 class="font-display text-2xl lg:text-[1.75rem] leading-tight mb-2">Employee 1</h3>
+            <p class="text-ash text-[13px] leading-relaxed mb-3">Russian Manicure · Founder</p>
+            <a href="https://instagram.com" class="text-[10px] tracking-widest-2 uppercase text-ink/60 hover:text-ink nav-link">@handle</a>
+          </article>
+
+          <article class="group">
+            <div class="aspect-[4/5] bg-stone/60 overflow-hidden mb-5 relative flex items-center justify-center">
+              <span class="absolute text-[10px] tracking-widest-2 uppercase text-ash/50 pointer-events-none">employee-2.jpg</span>
+              <img src="employee-2.jpg" alt="Employee 2" class="relative h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.03]" onerror="this.style.display='none'"/>
+            </div>
+            <p class="eyebrow text-clay mb-2">Senior Specialist</p>
+            <h3 class="font-display text-2xl lg:text-[1.75rem] leading-tight mb-2">Employee 2</h3>
+            <p class="text-ash text-[13px] leading-relaxed mb-3">Russian Manicure · Gel Extensions</p>
+            <a href="https://instagram.com" class="text-[10px] tracking-widest-2 uppercase text-ink/60 hover:text-ink nav-link">@handle</a>
+          </article>
+
+          <article class="group">
+            <div class="aspect-[4/5] bg-stone/60 overflow-hidden mb-5 relative flex items-center justify-center">
+              <span class="absolute text-[10px] tracking-widest-2 uppercase text-ash/50 pointer-events-none">employee-3.jpg</span>
+              <img src="employee-3.jpg" alt="Employee 3" class="relative h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.03]" onerror="this.style.display='none'"/>
+            </div>
+            <p class="eyebrow text-clay mb-2">Specialist</p>
+            <h3 class="font-display text-2xl lg:text-[1.75rem] leading-tight mb-2">Employee 3</h3>
+            <p class="text-ash text-[13px] leading-relaxed mb-3">Manicure · Nail Art</p>
+            <a href="https://instagram.com" class="text-[10px] tracking-widest-2 uppercase text-ink/60 hover:text-ink nav-link">@handle</a>
+          </article>
+
+          <article class="group">
+            <div class="aspect-[4/5] bg-stone/60 overflow-hidden mb-5 relative flex items-center justify-center">
+              <span class="absolute text-[10px] tracking-widest-2 uppercase text-ash/50 pointer-events-none">employee-4.jpg</span>
+              <img src="employee-4.jpg" alt="Employee 4" class="relative h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.03]" onerror="this.style.display='none'"/>
+            </div>
+            <p class="eyebrow text-clay mb-2">Specialist</p>
+            <h3 class="font-display text-2xl lg:text-[1.75rem] leading-tight mb-2">Employee 4</h3>
+            <p class="text-ash text-[13px] leading-relaxed mb-3">Pedicure · Russian Technique</p>
+            <a href="https://instagram.com" class="text-[10px] tracking-widest-2 uppercase text-ink/60 hover:text-ink nav-link">@handle</a>
+          </article>
+
+          <article class="group">
+            <div class="aspect-[4/5] bg-stone/60 overflow-hidden mb-5 relative flex items-center justify-center">
+              <span class="absolute text-[10px] tracking-widest-2 uppercase text-ash/50 pointer-events-none">employee-5.jpg</span>
+              <img src="employee-5.jpg" alt="Employee 5" class="relative h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.03]" onerror="this.style.display='none'"/>
+            </div>
+            <p class="eyebrow text-clay mb-2">Specialist</p>
+            <h3 class="font-display text-2xl lg:text-[1.75rem] leading-tight mb-2">Employee 5</h3>
+            <p class="text-ash text-[13px] leading-relaxed mb-3">Manicure · Gel Polish</p>
+            <a href="https://instagram.com" class="text-[10px] tracking-widest-2 uppercase text-ink/60 hover:text-ink nav-link">@handle</a>
+          </article>
+
+          <article class="group">
+            <div class="aspect-[4/5] bg-stone/60 overflow-hidden mb-5 relative flex items-center justify-center">
+              <span class="absolute text-[10px] tracking-widest-2 uppercase text-ash/50 pointer-events-none">employee-6.jpg</span>
+              <img src="employee-6.jpg" alt="Employee 6" class="relative h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.03]" onerror="this.style.display='none'"/>
+            </div>
+            <p class="eyebrow text-clay mb-2">Specialist</p>
+            <h3 class="font-display text-2xl lg:text-[1.75rem] leading-tight mb-2">Employee 6</h3>
+            <p class="text-ash text-[13px] leading-relaxed mb-3">Pedicure · Extensions</p>
+            <a href="https://instagram.com" class="text-[10px] tracking-widest-2 uppercase text-ink/60 hover:text-ink nav-link">@handle</a>
+          </article>
+
+          <article class="group">
+            <div class="aspect-[4/5] bg-stone/60 overflow-hidden mb-5 relative flex items-center justify-center">
+              <span class="absolute text-[10px] tracking-widest-2 uppercase text-ash/50 pointer-events-none">employee-7.jpg</span>
+              <img src="employee-7.jpg" alt="Employee 7" class="relative h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.03]" onerror="this.style.display='none'"/>
+            </div>
+            <p class="eyebrow text-clay mb-2">Specialist</p>
+            <h3 class="font-display text-2xl lg:text-[1.75rem] leading-tight mb-2">Employee 7</h3>
+            <p class="text-ash text-[13px] leading-relaxed mb-3">Manicure · Nail Art</p>
+            <a href="https://instagram.com" class="text-[10px] tracking-widest-2 uppercase text-ink/60 hover:text-ink nav-link">@handle</a>
+          </article>
+
+          <article class="group">
+            <div class="aspect-[4/5] bg-stone/60 overflow-hidden mb-5 relative flex items-center justify-center">
+              <span class="absolute text-[10px] tracking-widest-2 uppercase text-ash/50 pointer-events-none">employee-8.jpg</span>
+              <img src="employee-8.jpg" alt="Employee 8" class="relative h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.03]" onerror="this.style.display='none'"/>
+            </div>
+            <p class="eyebrow text-clay mb-2">Specialist</p>
+            <h3 class="font-display text-2xl lg:text-[1.75rem] leading-tight mb-2">Employee 8</h3>
+            <p class="text-ash text-[13px] leading-relaxed mb-3">Russian Manicure · Pedicure</p>
+            <a href="https://instagram.com" class="text-[10px] tracking-widest-2 uppercase text-ink/60 hover:text-ink nav-link">@handle</a>
+          </article>
+
+        </div>
+
+        <div class="mt-16 text-center">
+          <a href="#booking" class="ed-link text-[11px] tracking-wider-2 uppercase font-medium">Book with a specialist →</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== Banner: European Manicure ========== -->
+    <section class="relative banner-bg-1 grain min-h-[560px] flex items-center px-6 lg:px-10 py-24">
+      <div class="relative z-10 mx-auto max-w-[1400px] w-full">
+        <div class="max-w-xl text-paper">
+          <p class="eyebrow text-stone mb-6">— The Signature</p>
+          <h3 class="font-display text-[clamp(3rem,7.2vw,6rem)] leading-[0.95]">
+            No water. No cutting.<br/>
+            Just precision.
+          </h3>
+          <p class="mt-6 text-paper/85 leading-relaxed font-light">
+            Using an electric file with calibrated bits, we lift and reduce cuticles cleanly — preserving the nail bed and revealing skin that stays smooth long after you leave.
+          </p>
+          <a href="#menu" class="mt-8 inline-flex items-center gap-3 border border-paper px-7 py-3.5 text-[11px] tracking-wider-2 uppercase font-medium hover:bg-paper hover:text-ink transition">
+            Explore the menu
+            <span aria-hidden="true">→</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== Spa Menu ========== -->
+    <section id="menu" class="bg-paper py-24 lg:py-32 px-6 lg:px-10">
+      <div class="mx-auto max-w-[1100px]">
+        <header class="mb-16 lg:mb-20 grid grid-cols-12 gap-6 items-end border-b border-ink/15 pb-10">
+          <div class="col-span-12 md:col-span-3">
+            <p class="eyebrow text-clay">N° 03</p>
+          </div>
+          <div class="col-span-12 md:col-span-9">
+            <h2 class="font-display text-[clamp(3rem,7.2vw,6rem)] leading-[0.95]">
+              Spa Menu
+            </h2>
+          </div>
+        </header>
+
+        <div class="space-y-12">
+          <!-- Item 01 -->
+          <article class="grid grid-cols-12 gap-6 items-start">
+            <div class="col-span-12 md:col-span-2 pt-2">
+              <span class="eyebrow text-clay">01 — 100 min</span>
+            </div>
+            <div class="col-span-12 md:col-span-10">
+              <div class="menu-row">
+                <h3 class="font-display-alt text-2xl md:text-3xl font-normal">European Manicure</h3>
+                <span class="leader" aria-hidden="true"></span>
+                <span class="font-display-alt text-2xl md:text-3xl">$90</span>
+              </div>
+              <p class="mt-3 text-ash leading-relaxed max-w-2xl">
+                Dry technique with electric file. Precise cuticle removal for a long-lasting, clean result. Includes gel color or rubber base finish.
+              </p>
+            </div>
+          </article>
+
+          <!-- Item 02 -->
+          <article class="grid grid-cols-12 gap-6 items-start border-t border-ink/10 pt-12">
+            <div class="col-span-12 md:col-span-2 pt-2">
+              <span class="eyebrow text-clay">02 — 75 min</span>
+            </div>
+            <div class="col-span-12 md:col-span-10">
+              <div class="menu-row">
+                <h3 class="font-display-alt text-2xl md:text-3xl font-normal">European Dry Pedicure</h3>
+                <span class="leader" aria-hidden="true"></span>
+                <span class="font-display-alt text-2xl md:text-3xl">$90</span>
+              </div>
+              <p class="mt-3 text-ash leading-relaxed max-w-2xl">
+                The same dry precision technique applied to feet — deep cuticle care, exfoliation, and a smooth finish. Gel or regular polish included.
+              </p>
+            </div>
+          </article>
+
+          <!-- Item 03 -->
+          <article class="grid grid-cols-12 gap-6 items-start border-t border-ink/10 pt-12">
+            <div class="col-span-12 md:col-span-2 pt-2">
+              <span class="eyebrow text-clay">03 — 120 min</span>
+            </div>
+            <div class="col-span-12 md:col-span-10">
+              <div class="menu-row">
+                <h3 class="font-display-alt text-2xl md:text-3xl font-normal">Builder Gel Extensions</h3>
+                <span class="leader" aria-hidden="true"></span>
+                <span class="font-display-alt text-2xl md:text-3xl">$120</span>
+              </div>
+              <p class="mt-3 text-ash leading-relaxed max-w-2xl">
+                Builder gel extensions for added length and strength. Custom shape and length. Finished with gel color of your choice.
+              </p>
+            </div>
+          </article>
+        </div>
+
+        <div class="mt-16 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-6 border-t border-ink/15 pt-10">
+          <p class="text-ash text-sm font-light max-w-md">
+            Add-ons available — French tips, nail art, soak-off, and reinforcement layers — discussed during consultation.
+          </p>
+          <a href="#booking" class="ed-link text-[11px] tracking-wider-2 uppercase font-medium">Reserve your time →</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== Editorial Split: Why ========== -->
+    <section id="about" class="bg-stone/40 py-24 lg:py-32 px-6 lg:px-10">
+      <div class="mx-auto max-w-[1400px] grid grid-cols-12 gap-8 lg:gap-16 items-center">
+        <div class="col-span-12 lg:col-span-6 order-2 lg:order-1">
+          <p class="eyebrow text-clay mb-6">N° 04 / Philosophy</p>
+          <h2 class="font-display text-[clamp(3rem,7.2vw,6rem)] leading-[0.95] mb-8">
+            Nail health,<br/>
+            first and always.
+          </h2>
+          <p class="text-ash leading-relaxed text-[15px] mb-6 max-w-lg">
+            Elizabeth Lotous founded the studio around a single conviction: mastery requires focus. The European dry method, performed correctly, is gentler than traditional nipping and soaking — and the results speak for themselves: cleaner cuticles, fewer breaks, and a finish that holds.
+          </p>
+
+          <ul class="mt-10 divide-y divide-ink/15 border-t border-b border-ink/15">
+            <li class="flex items-start gap-6 py-4">
+              <span class="font-display-alt text-clay text-lg pt-0.5">i.</span>
+              <span class="text-ink text-[15px] leading-relaxed">Dry technique — no water, no nippers</span>
+            </li>
+            <li class="flex items-start gap-6 py-4">
+              <span class="font-display-alt text-clay text-lg pt-0.5">ii.</span>
+              <span class="text-ink text-[15px] leading-relaxed">Licensed and certified specialist</span>
+            </li>
+            <li class="flex items-start gap-6 py-4">
+              <span class="font-display-alt text-clay text-lg pt-0.5">iii.</span>
+              <span class="text-ink text-[15px] leading-relaxed">Hospital-grade sterilization between every client</span>
+            </li>
+            <li class="flex items-start gap-6 py-4">
+              <span class="font-display-alt text-clay text-lg pt-0.5">iv.</span>
+              <span class="text-ink text-[15px] leading-relaxed">Electric file precision for long-lasting wear</span>
+            </li>
+          </ul>
+
+          <dl class="grid grid-cols-3 gap-8 mt-12">
+            <div>
+              <dt class="eyebrow text-clay mb-2">Clients</dt>
+              <dd class="font-display-alt text-3xl lg:text-4xl">1800<span class="text-2xl">+</span></dd>
+            </div>
+            <div>
+              <dt class="eyebrow text-clay mb-2">Years</dt>
+              <dd class="font-display-alt text-3xl lg:text-4xl">3<span class="text-2xl">+</span></dd>
+            </div>
+            <div>
+              <dt class="eyebrow text-clay mb-2">Rating</dt>
+              <dd class="font-display-alt text-3xl lg:text-4xl">4.9</dd>
+            </div>
+          </dl>
+        </div>
+
+        <figure class="col-span-12 lg:col-span-6 order-1 lg:order-2">
+          <div class="aspect-[4/5] bg-ink/10 overflow-hidden">
+            <img src="lisa.jpg" alt="Lisa, founder of Lotous Nails, at work in the South Tampa studio" class="h-full w-full object-cover" onerror="this.style.display='none'"/>
+          </div>
+          <figcaption class="mt-3 text-[11px] tracking-wider-2 uppercase text-ash">— Elizabeth Lotous</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <!-- ========== The Process ========== -->
+    <section class="bg-paper py-24 lg:py-32 px-6 lg:px-10">
+      <div class="mx-auto max-w-[1400px]">
+        <header class="mb-16 lg:mb-20 max-w-3xl">
+          <p class="eyebrow text-clay mb-4">N° 05 / The Process</p>
+          <h2 class="font-display text-[clamp(3rem,7.2vw,6rem)] leading-[0.95]">
+            From booking to beautiful.
+          </h2>
+        </header>
+
+        <ol class="grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-0 md:divide-x divide-ink/15">
+          <li class="md:px-10 first:md:pl-0">
+            <div class="font-display-alt text-6xl lg:text-7xl text-clay mb-6">01</div>
+            <h3 class="font-display-alt text-2xl mb-3">Book online</h3>
+            <p class="text-ash leading-relaxed text-[15px] max-w-xs">
+              Choose your service and preferred time in seconds via our online booking system.
+            </p>
+          </li>
+          <li class="md:px-10">
+            <div class="font-display-alt text-6xl lg:text-7xl text-clay mb-6">02</div>
+            <h3 class="font-display-alt text-2xl mb-3">Arrive &amp; relax</h3>
+            <p class="text-ash leading-relaxed text-[15px] max-w-xs">
+              Walk into a calm, private studio. Your specialist is ready for you on time, every time.
+            </p>
+          </li>
+          <li class="md:px-10">
+            <div class="font-display-alt text-6xl lg:text-7xl text-clay mb-6">03</div>
+            <h3 class="font-display-alt text-2xl mb-3">Lasting result</h3>
+            <p class="text-ash leading-relaxed text-[15px] max-w-xs">
+              Leave with flawless, healthy nails that hold their finish for three to four weeks.
+            </p>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- ========== Gallery ========== -->
+    <section id="gallery" class="bg-paper pb-24 lg:pb-32 px-6 lg:px-10">
+      <div class="mx-auto max-w-[1400px]">
+        <header class="mb-12 lg:mb-16 grid grid-cols-12 gap-6 items-end">
+          <div class="col-span-12 md:col-span-7">
+            <p class="eyebrow text-clay mb-4">N° 06 / Portfolio</p>
+            <h2 class="font-display text-[clamp(3rem,7.2vw,6rem)] leading-[0.95]">
+              Recent work.
+            </h2>
+          </div>
+          <div class="col-span-12 md:col-span-5 md:text-right">
+            <p class="text-ash text-[15px] max-w-sm md:ml-auto leading-relaxed">Real results from real clients. Tap any image to view in detail.</p>
+          </div>
+        </header>
+
+        <!-- Asymmetric editorial grid -->
+        <div class="grid grid-cols-12 gap-3 md:gap-4">
+          <a href="#" class="col-span-12 md:col-span-7 aspect-[4/3] md:aspect-[15/8] bg-stone/60 overflow-hidden block group">
+            <img src="work-1.jpg" alt="Nail design — soft nude with chrome accent" class="h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.03]" onerror="this.style.display='none'"/>
+          </a>
+          <a href="#" class="col-span-6 md:col-span-5 aspect-square md:aspect-[4/3] bg-stone/60 overflow-hidden block group">
+            <img src="work-2.jpg" alt="Nail design — French tip" class="h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.03]" onerror="this.style.display='none'"/>
+          </a>
+          <a href="#" class="col-span-6 md:col-span-3 aspect-square md:aspect-[5/6] bg-stone/60 overflow-hidden block group">
+            <img src="work-3.jpg" alt="Nail design — gel polish" class="h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.03]" onerror="this.style.display='none'"/>
+          </a>
+          <a href="#" class="col-span-6 md:col-span-3 aspect-square md:aspect-[5/6] bg-stone/60 overflow-hidden block group">
+            <img src="work-4.jpg" alt="Nail design — minimal" class="h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.03]" onerror="this.style.display='none'"/>
+          </a>
+          <a href="#" class="col-span-12 md:col-span-6 aspect-[4/3] md:aspect-[17/10] bg-stone/60 overflow-hidden block group">
+            <img src="work-5.jpg" alt="Nail design — extensions" class="h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.03]" onerror="this.style.display='none'"/>
+          </a>
+        </div>
+
+        <div class="mt-10 text-center">
+          <a href="#" class="ed-link text-[11px] tracking-wider-2 uppercase font-medium">View full portfolio →</a>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ========== Pull-quote / Testimonial ========== -->
+    <section class="bg-ink text-paper py-24 lg:py-32 px-6 lg:px-10">
+      <div class="mx-auto max-w-[1100px] text-center">
+        <p class="eyebrow text-stone mb-10">N° 08 / Said by clients</p>
+        <blockquote>
+          <p class="font-display-alt text-[clamp(1.5rem,3.5vw,3rem)] leading-[1.2]">
+            “My nails last four weeks without chipping. The European technique is on a different level — so clean, so precise. I won't go anywhere else in Tampa.”
+          </p>
+          <footer class="mt-10 text-[11px] tracking-wider-2 uppercase text-stone">
+            — Sarah M. <span class="opacity-50 mx-2">·</span> March 2026
+          </footer>
+        </blockquote>
+
+        <!-- secondary mini quotes -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-12 mt-20 pt-16 border-t border-paper/15 text-left">
+          <figure>
+            <p class="font-display-alt text-xl lg:text-2xl leading-snug">“The studio is calming, the work is flawless. Best manicure I've had in Tampa.”</p>
+            <figcaption class="mt-5 text-[11px] tracking-wider-2 uppercase text-stone">— Jessica T. · February 2026</figcaption>
+          </figure>
+          <figure>
+            <p class="font-display-alt text-xl lg:text-2xl leading-snug">“I was nervous about the electric file. Painless. My cuticles look incredible.”</p>
+            <figcaption class="mt-5 text-[11px] tracking-wider-2 uppercase text-stone">— Elena R. · April 2026</figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== FAQ ========== -->
+    <section id="faq" class="bg-paper py-24 lg:py-32 px-6 lg:px-10">
+      <div class="mx-auto max-w-[1100px] grid grid-cols-12 gap-8 lg:gap-12">
+        <header class="col-span-12 lg:col-span-4">
+          <p class="eyebrow text-clay mb-4">N° 09</p>
+          <h2 class="font-display text-[clamp(3rem,7.2vw,6rem)] leading-[0.95]">
+            Frequently asked.
+          </h2>
+          <p class="mt-6 text-ash text-[15px] leading-relaxed max-w-sm">
+            Anything else? Reach us by phone or WhatsApp — we answer personally.
+          </p>
+        </header>
+
+        <div class="col-span-12 lg:col-span-8 border-t border-ink/15">
+
+          <details class="border-b border-ink/15">
+            <summary class="py-6 flex items-center justify-between gap-4 text-[15px] font-medium hover:text-clay transition">
+              What is a European manicure?
+              <span class="chev font-display-alt text-2xl leading-none">+</span>
+            </summary>
+            <div class="pb-6 pr-8 text-ash leading-relaxed text-[15px]">European manicure (also called dry or e-file manicure) uses an electric file to gently remove dead skin and cuticles instead of soaking in water or cutting with scissors. The result is a much cleaner, longer-lasting finish with less damage to the nail.</div>
+          </details>
+
+          <details class="border-b border-ink/15">
+            <summary class="py-6 flex items-center justify-between gap-4 text-[15px] font-medium hover:text-clay transition">
+              Is the European manicure safe?
+              <span class="chev font-display-alt text-2xl leading-none">+</span>
+            </summary>
+            <div class="pb-6 pr-8 text-ash leading-relaxed text-[15px]">Yes, when performed by a trained specialist. Our technician is licensed and certified in the European technique. We use high-quality, sterilized equipment and follow strict hygiene protocols for every client.</div>
+          </details>
+
+          <details class="border-b border-ink/15">
+            <summary class="py-6 flex items-center justify-between gap-4 text-[15px] font-medium hover:text-clay transition">
+              How long does a European manicure last?
+              <span class="chev font-display-alt text-2xl leading-none">+</span>
+            </summary>
+            <div class="pb-6 pr-8 text-ash leading-relaxed text-[15px]">Most clients enjoy three to four weeks of wear before needing a fill or new set. Because the cuticle area is prepared so precisely, lifting and chipping are significantly reduced compared to traditional methods.</div>
+          </details>
+
+          <details class="border-b border-ink/15">
+            <summary class="py-6 flex items-center justify-between gap-4 text-[15px] font-medium hover:text-clay transition">
+              What's the difference between rubber base and gel color?
+              <span class="chev font-display-alt text-2xl leading-none">+</span>
+            </summary>
+            <div class="pb-6 pr-8 text-ash leading-relaxed text-[15px]">Rubber base is a flexible, self-leveling gel that bonds strongly to the nail and adds a natural finish. Gel color is applied over the base for a full-color look. Both cure under UV/LED lamp and last equally long.</div>
+          </details>
+
+          <details class="border-b border-ink/15">
+            <summary class="py-6 flex items-center justify-between gap-4 text-[15px] font-medium hover:text-clay transition">
+              How long does the appointment take?
+              <span class="chev font-display-alt text-2xl leading-none">+</span>
+            </summary>
+            <div class="pb-6 pr-8 text-ash leading-relaxed text-[15px]">European manicure: 90–100 minutes. European dry pedicure: 75 minutes. Builder gel extensions: up to two hours. We do not rush — the extra time is what delivers the quality you're booking for.</div>
+          </details>
+
+          <details class="border-b border-ink/15">
+            <summary class="py-6 flex items-center justify-between gap-4 text-[15px] font-medium hover:text-clay transition">
+              Do I need to do anything to prepare?
+              <span class="chev font-display-alt text-2xl leading-none">+</span>
+            </summary>
+            <div class="pb-6 pr-8 text-ash leading-relaxed text-[15px]">Just arrive with clean, polish-free nails if possible. Avoid cutting your cuticles before your appointment — let us handle that with the proper technique. No soaking or prep needed.</div>
+          </details>
+
+          <details class="border-b border-ink/15">
+            <summary class="py-6 flex items-center justify-between gap-4 text-[15px] font-medium hover:text-clay transition">
+              What is your cancellation policy?
+              <span class="chev font-display-alt text-2xl leading-none">+</span>
+            </summary>
+            <div class="pb-6 pr-8 text-ash leading-relaxed text-[15px]">We ask for at least 24 hours notice to cancel or reschedule. Late cancellations and no-shows may be subject to a fee. You can manage your booking online via the Square link.</div>
+          </details>
+
+          <details class="border-b border-ink/15">
+            <summary class="py-6 flex items-center justify-between gap-4 text-[15px] font-medium hover:text-clay transition">
+              Do you offer gift cards?
+              <span class="chev font-display-alt text-2xl leading-none">+</span>
+            </summary>
+            <div class="pb-6 pr-8 text-ash leading-relaxed text-[15px]">Yes — gift cards are available year-round. Contact us by phone or WhatsApp to arrange one. They make a perfect gift for any occasion.</div>
+          </details>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== Booking CTA banner ========== -->
+    <section id="booking" class="relative banner-bg-2 grain min-h-[520px] flex items-center px-6 lg:px-10 py-24">
+      <div class="relative z-10 mx-auto max-w-[1400px] w-full text-center text-paper">
+        <p class="eyebrow text-stone mb-8">N° 10 / Reserve</p>
+        <h2 class="font-display text-[clamp(3rem,8.4vw,6.6rem)] leading-[1] max-w-4xl mx-auto">
+          Begin your appointment.
+        </h2>
+        <p class="mt-8 text-paper/85 max-w-md mx-auto font-light leading-relaxed">
+          Online booking takes under a minute. Choose your service, pick your time, and you're set.
+        </p>
+        <div class="mt-12 flex flex-col sm:flex-row gap-4 sm:gap-6 items-center justify-center">
+          <a href="#" class="bg-paper text-ink px-10 py-4 text-[11px] tracking-wider-2 uppercase font-medium hover:bg-stone transition">
+            Book appointment →
+          </a>
+          <a href="tel:+18135737178" class="text-paper text-[11px] tracking-wider-2 uppercase font-medium ed-link hover:text-stone">
+            Or call (813) 573-7178
+          </a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  </div><!-- /.page-content -->
+
+  <!-- ========== Footer (Chanel-style reveal on scroll) ========== -->
+  <footer class="reveal-footer bg-ink text-paper flex flex-col">
+
+    <!-- Big brand wordmark — sits above all the text -->
+    <div class="flex-1 flex items-center justify-center px-6 min-h-0 py-10 lg:py-16">
+      <img
+        src="logo.webp"
+        alt="Lotous Nails"
+        class="w-auto max-w-full max-h-full"
+        style="height: clamp(130px, 26vw, 360px); filter: brightness(0) invert(1);"
+      />
+    </div>
+
+    <div class="mx-auto max-w-[1400px] w-full px-6 lg:px-10 pb-10 lg:pb-14">
+
+      <div class="grid grid-cols-12 gap-8 lg:gap-12">
+        <div class="col-span-12 md:col-span-4">
+          <p class="text-paper/70 text-sm leading-relaxed max-w-xs">
+            South Tampa's premier luxury nail salon. Precision European manicures, pedicures and nail artistry by Elizabeth Lotous.
+          </p>
+          <div class="mt-6 flex items-center gap-4 text-[11px] tracking-wider-2 uppercase">
+            <a href="https://instagram.com" class="text-paper/70 hover:text-paper nav-link">Instagram</a>
+            <span class="opacity-30">·</span>
+            <a href="https://wa.me/18138973013" class="text-paper/70 hover:text-paper nav-link">WhatsApp</a>
+          </div>
+        </div>
+
+        <nav class="col-span-6 md:col-span-2" aria-label="Footer navigation">
+          <h3 class="eyebrow text-stone mb-5">Visit</h3>
+          <ul class="flex flex-col gap-3 text-sm">
+            <li><a href="#menu" class="text-paper/70 hover:text-paper">Spa Menu</a></li>
+            <li><a href="#gallery" class="text-paper/70 hover:text-paper">Gallery</a></li>
+            <li><a href="#about" class="text-paper/70 hover:text-paper">About</a></li>
+            <li><a href="#faq" class="text-paper/70 hover:text-paper">FAQ</a></li>
+            <li><a href="#booking" class="text-paper/70 hover:text-paper">Book</a></li>
+          </ul>
+        </nav>
+
+        <div class="col-span-6 md:col-span-3">
+          <h3 class="eyebrow text-stone mb-5">Hours</h3>
+          <ul class="flex flex-col gap-2 text-sm">
+            <li class="flex justify-between gap-4"><span class="text-paper/50">Monday</span>8am – 6pm</li>
+            <li class="flex justify-between gap-4"><span class="text-paper/50">Tuesday</span><span class="text-paper/60">Closed</span></li>
+            <li class="flex justify-between gap-4"><span class="text-paper/50">Wed — Sat</span>8am – 6pm</li>
+            <li class="flex justify-between gap-4"><span class="text-paper/50">Sunday</span>9am – 4pm</li>
+          </ul>
+        </div>
+
+        <div class="col-span-12 md:col-span-3">
+          <h3 class="eyebrow text-stone mb-5">Contact</h3>
+          <address class="not-italic flex flex-col gap-2 text-sm">
+            <a href="tel:+18135737178" class="text-paper/70 hover:text-paper">(813) 573-7178</a>
+            <span class="text-paper/70">3302 W Cypress St, Ste 108<br/>Tampa, FL 33607</span>
+            <a href="mailto:hello@lotousnails.us" class="text-paper/70 hover:text-paper">hello@lotousnails.us</a>
+          </address>
+        </div>
+      </div>
+
+      <div class="mt-16 pt-8 border-t border-paper/15 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 text-[11px] tracking-wider-2 uppercase text-paper/50">
+        <p>© 2026 Lotous Nails — All rights reserved.</p>
+        <p>South Tampa, FL · By appointment</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Simple reveal-on-scroll
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('in');
+          io.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.12 });
+    document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+  </script>
+</body>
+</html>
