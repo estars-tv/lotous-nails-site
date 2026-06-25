@@ -197,6 +197,31 @@
       z-index: 1;
       overflow: hidden;
     }
+    /* Specialists grid: flex-based so a partial last row centers horizontally.
+       Empty cards (no loaded photo) are hidden via JS and drop out of the flow. */
+    .team-grid {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      column-gap: 1rem;   /* gap-x-4 */
+      row-gap: 3rem;      /* gap-y-12 */
+    }
+    .team-grid > article {
+      /* 2 per row on mobile: (100% - 1 gap) / 2 */
+      flex: 0 0 calc((100% - 1rem) / 2);
+      max-width: calc((100% - 1rem) / 2);
+    }
+    @media (min-width: 768px) {
+      .team-grid {
+        column-gap: 1.5rem; /* gap-x-6 */
+        row-gap: 4rem;      /* gap-y-16 */
+      }
+      .team-grid > article {
+        /* 4 per row on desktop: (100% - 3 gaps) / 4 */
+        flex: 0 0 calc((100% - 4.5rem) / 4);
+        max-width: calc((100% - 4.5rem) / 4);
+      }
+    }
   </style>
 </head>
 <body>
@@ -211,7 +236,7 @@
       <div class="flex items-center gap-5">
         <a href="tel:+18135737178" class="hover:text-stone transition">(813) 573-7178</a>
         <span class="hidden md:inline opacity-50">|</span>
-        <a href="https://wa.me/18138973013" class="hidden md:inline hover:text-stone transition">WhatsApp</a>
+        <a href="https://instagram.com/lotous_nails" class="hidden md:inline hover:text-stone transition">Instagram</a>
       </div>
     </div>
   </div>
@@ -223,7 +248,7 @@
         <a href="#menu" class="nav-link">Spa Menu</a>
         <a href="#gallery" class="nav-link">Gallery</a>
         <a href="#about" class="nav-link">About</a>
-        <a href="#faq" class="nav-link">Our policy</a>
+        <a href="#policy" class="nav-link">Our policy</a>
       </nav>
       <button class="md:hidden justify-self-start inline-flex items-center justify-center min-h-[44px] min-w-[44px] -ml-2" aria-label="Open menu">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="3" y1="7" x2="21" y2="7"/><line x1="3" y1="17" x2="21" y2="17"/></svg>
@@ -235,7 +260,7 @@
 
       <div class="justify-self-end flex items-center gap-5 text-[11px] tracking-wider-2 uppercase font-medium">
         <a href="#faq" class="hidden md:inline nav-link">FAQ</a>
-        <a href="#booking" class="border border-ink px-5 py-2.5 hover:bg-ink hover:text-paper transition">Book</a>
+        <a href="https://www.lotousnails.us/s/appointments" target="_blank" rel="noopener noreferrer" class="border border-ink px-5 py-2.5 hover:bg-ink hover:text-paper transition">Book</a>
       </div>
     </div>
   </header>
@@ -258,7 +283,7 @@
         <!-- CTAs positioned in the lower third of the photo -->
         <div class="relative z-10 flex-1 flex items-end justify-center px-6 lg:px-10 pb-12 lg:pb-16">
           <div class="flex flex-col sm:flex-row gap-4 sm:gap-5 items-center justify-center">
-            <a href="#booking" class="inline-flex items-center justify-center gap-3 bg-paper text-ink min-w-[240px] px-8 py-4 text-[11px] tracking-wider-2 uppercase font-medium hover:bg-stone transition">
+            <a href="https://www.lotousnails.us/s/appointments" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center gap-3 bg-paper text-ink min-w-[240px] px-8 py-4 text-[11px] tracking-wider-2 uppercase font-medium hover:bg-stone transition">
               Book appointment
               <span aria-hidden="true">→</span>
             </a>
@@ -279,7 +304,7 @@
                 Medical-grade hygiene
               </p>
               <p class="mt-3 text-paper/65 text-[12.5px] leading-[1.7] tracking-wide">
-                Sterilized tooling <span class="text-paper/30 mx-1">/</span> Private suite <span class="text-paper/30 mx-1">/</span> Single-use files
+                Sterilized tooling <span class="text-paper/30 mx-1">/</span> Single-use files
               </p>
             </div>
 
@@ -358,7 +383,7 @@
         </div>
         <div class="col-span-12 lg:col-span-3 lg:col-start-10 self-start lg:pt-3">
           <p class="text-ash leading-relaxed text-[15px]">
-            We specialize exclusively in the European manicure — a precise, dry technique that protects nail health while delivering a finish you can wear for three to four weeks without compromise.
+            We specialize exclusively in the Russian manicure — a precise, dry technique that protects nail health while delivering a finish you can wear for three to four weeks without compromise.
           </p>
           <a href="#about" class="mt-6 inline-block ed-link text-[11px] tracking-wider-2 uppercase font-medium">Read the philosophy</a>
         </div>
@@ -377,106 +402,89 @@
           </div>
           <div class="col-span-12 md:col-span-5 md:text-right">
             <p class="text-ash text-[15px] max-w-sm md:ml-auto leading-relaxed">
-              Each of our specialists is trained in the European dry technique. Eight pairs of hands, one shared standard.
+              Each of our specialists is trained in the Russian dry technique. Seven pairs of hands, one shared standard.
             </p>
           </div>
         </header>
 
-        <!-- 4 × 2 grid of specialists -->
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-x-4 gap-y-12 md:gap-x-6 md:gap-y-16">
+        <!-- Specialists — empty cards auto-hide, partial last row centers -->
+        <div class="team-grid">
 
           <article class="group">
             <div class="aspect-[4/5] bg-stone/60 overflow-hidden mb-5 relative flex items-center justify-center">
               <span class="absolute text-[10px] tracking-widest-2 uppercase text-ash/50 pointer-events-none">employee-1.jpg</span>
-              <img src="employee-1.jpg" alt="Employee 1" class="relative h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.03]" onerror="this.style.display='none'"/>
+              <img src="employee-1.jpg" alt="Elizabeth" class="relative h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.03]" onerror="this.style.display='none'"/>
             </div>
             <p class="eyebrow text-clay mb-2">Lead Specialist</p>
-            <h3 class="font-display text-2xl lg:text-[1.75rem] leading-tight mb-2">Employee 1</h3>
-            <p class="text-ash text-[13px] leading-relaxed mb-3">Russian Manicure · Founder</p>
-            <a href="https://instagram.com" class="text-[10px] tracking-widest-2 uppercase text-ink/60 hover:text-ink nav-link">@handle</a>
+            <h3 class="font-display text-[2.4rem] lg:text-[2.8rem] leading-tight mb-2">Elizabeth</h3>
+            <p class="text-ash text-[13px] leading-relaxed mb-3">Russian Manicure · Founder · Gel Extensions</p>
+            <a href="https://instagram.com/elizabeth_lotous" class="text-[10px] tracking-widest-2 uppercase text-ink/60 hover:text-ink nav-link">@elizabeth_lotous</a>
           </article>
 
           <article class="group">
             <div class="aspect-[4/5] bg-stone/60 overflow-hidden mb-5 relative flex items-center justify-center">
               <span class="absolute text-[10px] tracking-widest-2 uppercase text-ash/50 pointer-events-none">employee-2.jpg</span>
-              <img src="employee-2.jpg" alt="Employee 2" class="relative h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.03]" onerror="this.style.display='none'"/>
+              <img src="employee-2.jpg" alt="Anastasia" class="relative h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.03]" onerror="this.style.display='none'"/>
             </div>
-            <p class="eyebrow text-clay mb-2">Senior Specialist</p>
-            <h3 class="font-display text-2xl lg:text-[1.75rem] leading-tight mb-2">Employee 2</h3>
-            <p class="text-ash text-[13px] leading-relaxed mb-3">Russian Manicure · Gel Extensions</p>
-            <a href="https://instagram.com" class="text-[10px] tracking-widest-2 uppercase text-ink/60 hover:text-ink nav-link">@handle</a>
+            <p class="eyebrow text-clay mb-2">Specialist</p>
+            <h3 class="font-display text-[2.4rem] lg:text-[2.8rem] leading-tight mb-2">Anastasia</h3>
+            <p class="text-ash text-[13px] leading-relaxed mb-3">Russian Manicure · Nail Art · Gel Extensions</p>
           </article>
 
           <article class="group">
             <div class="aspect-[4/5] bg-stone/60 overflow-hidden mb-5 relative flex items-center justify-center">
               <span class="absolute text-[10px] tracking-widest-2 uppercase text-ash/50 pointer-events-none">employee-3.jpg</span>
-              <img src="employee-3.jpg" alt="Employee 3" class="relative h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.03]" onerror="this.style.display='none'"/>
+              <img src="employee-3.jpg" alt="Diana" class="relative h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.03]" onerror="this.style.display='none'"/>
             </div>
-            <p class="eyebrow text-clay mb-2">Specialist</p>
-            <h3 class="font-display text-2xl lg:text-[1.75rem] leading-tight mb-2">Employee 3</h3>
-            <p class="text-ash text-[13px] leading-relaxed mb-3">Manicure · Nail Art</p>
-            <a href="https://instagram.com" class="text-[10px] tracking-widest-2 uppercase text-ink/60 hover:text-ink nav-link">@handle</a>
+            <p class="eyebrow text-clay mb-2">Junior Specialist</p>
+            <h3 class="font-display text-[2.4rem] lg:text-[2.8rem] leading-tight mb-2">Diana</h3>
+            <p class="text-ash text-[13px] leading-relaxed mb-3">Russian Manicure · Pedicure</p>
           </article>
 
           <article class="group">
             <div class="aspect-[4/5] bg-stone/60 overflow-hidden mb-5 relative flex items-center justify-center">
               <span class="absolute text-[10px] tracking-widest-2 uppercase text-ash/50 pointer-events-none">employee-4.jpg</span>
-              <img src="employee-4.jpg" alt="Employee 4" class="relative h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.03]" onerror="this.style.display='none'"/>
+              <img src="employee-4.jpg" alt="Katya" class="relative h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.03]" onerror="this.style.display='none'"/>
             </div>
             <p class="eyebrow text-clay mb-2">Specialist</p>
-            <h3 class="font-display text-2xl lg:text-[1.75rem] leading-tight mb-2">Employee 4</h3>
-            <p class="text-ash text-[13px] leading-relaxed mb-3">Pedicure · Russian Technique</p>
-            <a href="https://instagram.com" class="text-[10px] tracking-widest-2 uppercase text-ink/60 hover:text-ink nav-link">@handle</a>
+            <h3 class="font-display text-[2.4rem] lg:text-[2.8rem] leading-tight mb-2">Katya</h3>
+            <p class="text-ash text-[13px] leading-relaxed mb-3">Russian Manicure · Pedicure</p>
           </article>
 
           <article class="group">
             <div class="aspect-[4/5] bg-stone/60 overflow-hidden mb-5 relative flex items-center justify-center">
               <span class="absolute text-[10px] tracking-widest-2 uppercase text-ash/50 pointer-events-none">employee-5.jpg</span>
-              <img src="employee-5.jpg" alt="Employee 5" class="relative h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.03]" onerror="this.style.display='none'"/>
+              <img src="employee-5.jpg" alt="Vira" class="relative h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.03]" onerror="this.style.display='none'"/>
             </div>
-            <p class="eyebrow text-clay mb-2">Specialist</p>
-            <h3 class="font-display text-2xl lg:text-[1.75rem] leading-tight mb-2">Employee 5</h3>
-            <p class="text-ash text-[13px] leading-relaxed mb-3">Manicure · Gel Polish</p>
-            <a href="https://instagram.com" class="text-[10px] tracking-widest-2 uppercase text-ink/60 hover:text-ink nav-link">@handle</a>
+            <p class="eyebrow text-clay mb-2">Senior Specialist</p>
+            <h3 class="font-display text-[2.4rem] lg:text-[2.8rem] leading-tight mb-2">Vira</h3>
+            <p class="text-ash text-[13px] leading-relaxed mb-3">Russian Manicure · Pedicure · Gel Extensions</p>
           </article>
 
           <article class="group">
             <div class="aspect-[4/5] bg-stone/60 overflow-hidden mb-5 relative flex items-center justify-center">
               <span class="absolute text-[10px] tracking-widest-2 uppercase text-ash/50 pointer-events-none">employee-6.jpg</span>
-              <img src="employee-6.jpg" alt="Employee 6" class="relative h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.03]" onerror="this.style.display='none'"/>
+              <img src="employee-6.jpg" alt="Olha" class="relative h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.03]" onerror="this.style.display='none'"/>
             </div>
-            <p class="eyebrow text-clay mb-2">Specialist</p>
-            <h3 class="font-display text-2xl lg:text-[1.75rem] leading-tight mb-2">Employee 6</h3>
-            <p class="text-ash text-[13px] leading-relaxed mb-3">Pedicure · Extensions</p>
-            <a href="https://instagram.com" class="text-[10px] tracking-widest-2 uppercase text-ink/60 hover:text-ink nav-link">@handle</a>
+            <p class="eyebrow text-clay mb-2">Senior Specialist</p>
+            <h3 class="font-display text-[2.4rem] lg:text-[2.8rem] leading-tight mb-2">Olha</h3>
+            <p class="text-ash text-[13px] leading-relaxed mb-3">Russian Manicure · Pedicure</p>
           </article>
 
           <article class="group">
             <div class="aspect-[4/5] bg-stone/60 overflow-hidden mb-5 relative flex items-center justify-center">
               <span class="absolute text-[10px] tracking-widest-2 uppercase text-ash/50 pointer-events-none">employee-7.jpg</span>
-              <img src="employee-7.jpg" alt="Employee 7" class="relative h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.03]" onerror="this.style.display='none'"/>
+              <img src="employee-7.jpg" alt="Ilona" class="relative h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.03]" onerror="this.style.display='none'"/>
             </div>
-            <p class="eyebrow text-clay mb-2">Specialist</p>
-            <h3 class="font-display text-2xl lg:text-[1.75rem] leading-tight mb-2">Employee 7</h3>
-            <p class="text-ash text-[13px] leading-relaxed mb-3">Manicure · Nail Art</p>
-            <a href="https://instagram.com" class="text-[10px] tracking-widest-2 uppercase text-ink/60 hover:text-ink nav-link">@handle</a>
-          </article>
-
-          <article class="group">
-            <div class="aspect-[4/5] bg-stone/60 overflow-hidden mb-5 relative flex items-center justify-center">
-              <span class="absolute text-[10px] tracking-widest-2 uppercase text-ash/50 pointer-events-none">employee-8.jpg</span>
-              <img src="employee-8.jpg" alt="Employee 8" class="relative h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.03]" onerror="this.style.display='none'"/>
-            </div>
-            <p class="eyebrow text-clay mb-2">Specialist</p>
-            <h3 class="font-display text-2xl lg:text-[1.75rem] leading-tight mb-2">Employee 8</h3>
-            <p class="text-ash text-[13px] leading-relaxed mb-3">Russian Manicure · Pedicure</p>
-            <a href="https://instagram.com" class="text-[10px] tracking-widest-2 uppercase text-ink/60 hover:text-ink nav-link">@handle</a>
+            <p class="eyebrow text-clay mb-2">Admin/Specialist</p>
+            <h3 class="font-display text-[2.4rem] lg:text-[2.8rem] leading-tight mb-2">Ilona</h3>
+            <p class="text-ash text-[13px] leading-relaxed mb-3">Eyebrow · Lashes</p>
           </article>
 
         </div>
 
         <div class="mt-16 text-center">
-          <a href="#booking" class="ed-link text-[11px] tracking-wider-2 uppercase font-medium">Book with a specialist →</a>
+          <a href="https://www.lotousnails.us/s/appointments" target="_blank" rel="noopener noreferrer" class="ed-link text-[11px] tracking-wider-2 uppercase font-medium">Book with a specialist →</a>
         </div>
       </div>
     </section>
@@ -519,13 +527,13 @@
           <!-- Item 01 -->
           <article class="grid grid-cols-12 gap-6 items-start">
             <div class="col-span-12 md:col-span-2 pt-2">
-              <span class="eyebrow text-clay">01 — 100 min</span>
+              <span class="eyebrow text-clay">01 — 120 min</span>
             </div>
             <div class="col-span-12 md:col-span-10">
               <div class="menu-row">
                 <h3 class="font-display-alt text-2xl md:text-3xl font-normal">European Manicure</h3>
                 <span class="leader" aria-hidden="true"></span>
-                <span class="font-display-alt text-2xl md:text-3xl">$90</span>
+                <span class="font-display-alt text-2xl md:text-3xl">From $95</span>
               </div>
               <p class="mt-3 text-ash leading-relaxed max-w-2xl">
                 Dry technique with electric file. Precise cuticle removal for a long-lasting, clean result. Includes gel color or rubber base finish.
@@ -536,13 +544,13 @@
           <!-- Item 02 -->
           <article class="grid grid-cols-12 gap-6 items-start border-t border-ink/10 pt-12">
             <div class="col-span-12 md:col-span-2 pt-2">
-              <span class="eyebrow text-clay">02 — 75 min</span>
+              <span class="eyebrow text-clay">02 — 90 min</span>
             </div>
             <div class="col-span-12 md:col-span-10">
               <div class="menu-row">
                 <h3 class="font-display-alt text-2xl md:text-3xl font-normal">European Dry Pedicure</h3>
                 <span class="leader" aria-hidden="true"></span>
-                <span class="font-display-alt text-2xl md:text-3xl">$90</span>
+                <span class="font-display-alt text-2xl md:text-3xl">From $115</span>
               </div>
               <p class="mt-3 text-ash leading-relaxed max-w-2xl">
                 The same dry precision technique applied to feet — deep cuticle care, exfoliation, and a smooth finish. Gel or regular polish included.
@@ -553,13 +561,13 @@
           <!-- Item 03 -->
           <article class="grid grid-cols-12 gap-6 items-start border-t border-ink/10 pt-12">
             <div class="col-span-12 md:col-span-2 pt-2">
-              <span class="eyebrow text-clay">03 — 120 min</span>
+              <span class="eyebrow text-clay">03 — 180 min</span>
             </div>
             <div class="col-span-12 md:col-span-10">
               <div class="menu-row">
                 <h3 class="font-display-alt text-2xl md:text-3xl font-normal">Builder Gel Extensions</h3>
                 <span class="leader" aria-hidden="true"></span>
-                <span class="font-display-alt text-2xl md:text-3xl">$120</span>
+                <span class="font-display-alt text-2xl md:text-3xl">From $135</span>
               </div>
               <p class="mt-3 text-ash leading-relaxed max-w-2xl">
                 Builder gel extensions for added length and strength. Custom shape and length. Finished with gel color of your choice.
@@ -572,7 +580,7 @@
           <p class="text-ash text-sm font-light max-w-md">
             Add-ons available — French tips, nail art, soak-off, and reinforcement layers — discussed during consultation.
           </p>
-          <a href="#booking" class="ed-link text-[11px] tracking-wider-2 uppercase font-medium">Reserve your time →</a>
+          <a href="https://www.lotousnails.us/s/appointments" target="_blank" rel="noopener noreferrer" class="ed-link text-[11px] tracking-wider-2 uppercase font-medium">Reserve your time →</a>
         </div>
       </div>
     </section>
@@ -705,7 +713,7 @@
         </div>
 
         <div class="mt-10 text-center">
-          <a href="#" class="ed-link text-[11px] tracking-wider-2 uppercase font-medium">View full portfolio →</a>
+          <a href="https://instagram.com/lotous_nails" target="_blank" rel="noopener noreferrer" class="ed-link text-[11px] tracking-wider-2 uppercase font-medium">View full portfolio in Instagram →</a>
         </div>
       </div>
     </section>
@@ -717,22 +725,22 @@
         <p class="eyebrow text-stone mb-10">N° 08 / Said by clients</p>
         <blockquote>
           <p class="font-display-alt text-[clamp(1.5rem,3.5vw,3rem)] leading-[1.2]">
-            “My nails last four weeks without chipping. The European technique is on a different level — so clean, so precise. I won't go anywhere else in Tampa.”
+            “By far the best nail salon in St Pete, Tampa, and Bradenton. The gel manicure is long-lasting and high quality, and I appreciate how detailed the team is — I'm never disappointed.”
           </p>
           <footer class="mt-10 text-[11px] tracking-wider-2 uppercase text-stone">
-            — Sarah M. <span class="opacity-50 mx-2">·</span> March 2026
+            — Alexandra Soltys <span class="opacity-50 mx-2">·</span> December 2025
           </footer>
         </blockquote>
 
         <!-- secondary mini quotes -->
         <div class="grid grid-cols-1 md:grid-cols-2 gap-12 mt-20 pt-16 border-t border-paper/15 text-left">
           <figure>
-            <p class="font-display-alt text-xl lg:text-2xl leading-snug">“The studio is calming, the work is flawless. Best manicure I've had in Tampa.”</p>
-            <figcaption class="mt-5 text-[11px] tracking-wider-2 uppercase text-stone">— Jessica T. · February 2026</figcaption>
+            <p class="font-display-alt text-xl lg:text-2xl leading-snug">“I'm a very precise person when it comes to services, and every visit is exceptional. Liza, the owner, genuinely cares about her customers, and the salon is clean and cozy.”</p>
+            <figcaption class="mt-5 text-[11px] tracking-wider-2 uppercase text-stone">— Katya Vess · December 2025</figcaption>
           </figure>
           <figure>
-            <p class="font-display-alt text-xl lg:text-2xl leading-snug">“I was nervous about the electric file. Painless. My cuticles look incredible.”</p>
-            <figcaption class="mt-5 text-[11px] tracking-wider-2 uppercase text-stone">— Elena R. · April 2026</figcaption>
+            <p class="font-display-alt text-xl lg:text-2xl leading-snug">“I've been with Lotous Nails nearly two years and drive over an hour every three weeks. There's no better mani/pedi than a Russian mani/pedi — competitive prices, clean, friendly service, and all the techs do amazing work.”</p>
+            <figcaption class="mt-5 text-[11px] tracking-wider-2 uppercase text-stone">— Alexandra Soltys · January 2026</figcaption>
           </figure>
         </div>
       </div>
@@ -747,7 +755,7 @@
             Frequently asked.
           </h2>
           <p class="mt-6 text-ash text-[15px] leading-relaxed max-w-sm">
-            Anything else? Reach us by phone or WhatsApp — we answer personally.
+            Anything else? Reach us by phone or Instagram — we answer personally.
           </p>
         </header>
 
@@ -763,7 +771,7 @@
 
           <details class="border-b border-ink/15">
             <summary class="py-6 flex items-center justify-between gap-4 text-[15px] font-medium hover:text-clay transition">
-              Is the European manicure safe?
+              Is the European/Russian manicure safe?
               <span class="chev font-display-alt text-2xl leading-none">+</span>
             </summary>
             <div class="pb-6 pr-8 text-ash leading-relaxed text-[15px]">Yes, when performed by a trained specialist. Our technician is licensed and certified in the European technique. We use high-quality, sterilized equipment and follow strict hygiene protocols for every client.</div>
@@ -779,10 +787,10 @@
 
           <details class="border-b border-ink/15">
             <summary class="py-6 flex items-center justify-between gap-4 text-[15px] font-medium hover:text-clay transition">
-              What's the difference between rubber base and gel color?
+              What's the difference between rubber base and hard gel?
               <span class="chev font-display-alt text-2xl leading-none">+</span>
             </summary>
-            <div class="pb-6 pr-8 text-ash leading-relaxed text-[15px]">Rubber base is a flexible, self-leveling gel that bonds strongly to the nail and adds a natural finish. Gel color is applied over the base for a full-color look. Both cure under UV/LED lamp and last equally long.</div>
+            <div class="pb-6 pr-8 text-ash leading-relaxed text-[15px]">Rubber base is a flexible, self-leveling gel applied to the natural nail — it reinforces and evens the surface while staying thin and natural under color. Hard gel is a stronger, more rigid product used to build structure or add length, which makes it the choice for extensions. The key differences are flexibility and removal: rubber base stays soft and can be soaked off, while hard gel is rigid and must be gently filed off rather than dissolved. Both cure under a UV/LED lamp.</div>
           </details>
 
           <details class="border-b border-ink/15">
@@ -790,7 +798,7 @@
               How long does the appointment take?
               <span class="chev font-display-alt text-2xl leading-none">+</span>
             </summary>
-            <div class="pb-6 pr-8 text-ash leading-relaxed text-[15px]">European manicure: 90–100 minutes. European dry pedicure: 75 minutes. Builder gel extensions: up to two hours. We do not rush — the extra time is what delivers the quality you're booking for.</div>
+            <div class="pb-6 pr-8 text-ash leading-relaxed text-[15px]">Russian manicure: 90–120 minutes. Russian dry pedicure: 60–90 minutes. Builder gel extensions: up to 3 hours. We do not rush — the extra time is what delivers the quality you're booking for.</div>
           </details>
 
           <details class="border-b border-ink/15">
@@ -814,9 +822,74 @@
               Do you offer gift cards?
               <span class="chev font-display-alt text-2xl leading-none">+</span>
             </summary>
-            <div class="pb-6 pr-8 text-ash leading-relaxed text-[15px]">Yes — gift cards are available year-round. Contact us by phone or WhatsApp to arrange one. They make a perfect gift for any occasion.</div>
+            <div class="pb-6 pr-8 text-ash leading-relaxed text-[15px]">Yes — gift cards are available year-round. Contact us by phone or Instagram to arrange one. They make a perfect gift for any occasion.</div>
           </details>
 
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== Appointment Policy ========== -->
+    <section id="policy" class="bg-stone/40 py-24 lg:py-32 px-6 lg:px-10">
+      <div class="mx-auto max-w-[1100px] grid grid-cols-12 gap-8 lg:gap-12">
+        <header class="col-span-12 lg:col-span-4">
+          <p class="eyebrow text-clay mb-4">N° 10 / Policies</p>
+          <h2 class="font-display text-[clamp(3rem,7.2vw,6rem)] leading-[0.95]">
+            Appointment<br/>policy.
+          </h2>
+          <p class="mt-6 text-ash text-[15px] leading-relaxed max-w-sm">
+            We appreciate your commitment to punctuality and want every visit to feel seamless. Please review our appointment and late-arrival policies below before booking.
+          </p>
+        </header>
+
+        <div class="col-span-12 lg:col-span-8 lg:pt-2">
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-x-10 gap-y-10 lg:gap-y-14">
+
+            <div class="border-t border-ink/15 pt-6">
+              <div class="flex items-baseline gap-3 mb-3">
+                <span class="eyebrow text-clay">01</span>
+                <h3 class="font-display-alt text-2xl leading-tight">Late arrival</h3>
+              </div>
+              <p class="text-ash leading-relaxed text-[15px]">
+                Life can be unpredictable, so we allow a 15-minute grace period. Beyond 15 minutes your appointment may be cancelled and a deposit collected. If your technician still has time to accommodate you, we will proceed — in which case both your service and a late-arrival fee will apply.
+              </p>
+            </div>
+
+            <div class="border-t border-ink/15 pt-6">
+              <div class="flex items-baseline gap-3 mb-3">
+                <span class="eyebrow text-clay">02</span>
+                <h3 class="font-display-alt text-2xl leading-tight">Late-arrival fee</h3>
+              </div>
+              <p class="text-ash leading-relaxed text-[15px]">
+                Every client receives a 15-minute grace period. After 15 minutes a <span class="text-ink">$10</span> late-arrival fee is applied, with an additional <span class="text-ink">$10</span> for every subsequent 10 minutes of delay.
+              </p>
+            </div>
+
+            <div class="border-t border-ink/15 pt-6">
+              <div class="flex items-baseline gap-3 mb-3">
+                <span class="eyebrow text-clay">03</span>
+                <h3 class="font-display-alt text-2xl leading-tight">Cancellation &amp; rescheduling</h3>
+              </div>
+              <p class="text-ash leading-relaxed text-[15px]">
+                To cancel or reschedule without a fee, please notify us at least 24 hours before your scheduled appointment.
+              </p>
+            </div>
+
+            <div class="border-t border-ink/15 pt-6">
+              <div class="flex items-baseline gap-3 mb-3">
+                <span class="eyebrow text-clay">04</span>
+                <h3 class="font-display-alt text-2xl leading-tight">Cancellation fee</h3>
+              </div>
+              <p class="text-ash leading-relaxed text-[15px]">
+                Cancellations made less than 24 hours before your appointment will incur a fee of <span class="text-ink">50% of the service price</span>.
+              </p>
+            </div>
+
+          </div>
+
+          <p class="mt-12 lg:mt-14 pt-8 border-t border-ink/15 text-ash leading-relaxed text-[15px] font-light max-w-2xl">
+            These policies help us maintain the quality and punctuality of our services. If you have any questions or need clarification, please don't hesitate to <a href="tel:+18135737178" class="ed-link text-ink">reach out</a>. We look forward to giving you an exceptional experience at Lotous Nails.
+          </p>
         </div>
       </div>
     </section>
@@ -824,7 +897,7 @@
     <!-- ========== Booking CTA banner ========== -->
     <section id="booking" class="relative banner-bg-2 grain min-h-[520px] flex items-center px-6 lg:px-10 py-24">
       <div class="relative z-10 mx-auto max-w-[1400px] w-full text-center text-paper">
-        <p class="eyebrow text-stone mb-8">N° 10 / Reserve</p>
+        <p class="eyebrow text-stone mb-8">N° 11 / Reserve</p>
         <h2 class="font-display text-[clamp(3rem,8.4vw,6.6rem)] leading-[1] max-w-4xl mx-auto">
           Begin your appointment.
         </h2>
@@ -832,7 +905,7 @@
           Online booking takes under a minute. Choose your service, pick your time, and you're set.
         </p>
         <div class="mt-12 flex flex-col sm:flex-row gap-4 sm:gap-6 items-center justify-center">
-          <a href="#" class="bg-paper text-ink px-10 py-4 text-[11px] tracking-wider-2 uppercase font-medium hover:bg-stone transition">
+          <a href="https://www.lotousnails.us/s/appointments" target="_blank" rel="noopener noreferrer" class="bg-paper text-ink px-10 py-4 text-[11px] tracking-wider-2 uppercase font-medium hover:bg-stone transition">
             Book appointment →
           </a>
           <a href="tel:+18135737178" class="text-paper text-[11px] tracking-wider-2 uppercase font-medium ed-link hover:text-stone">
@@ -867,9 +940,7 @@
             South Tampa's premier luxury nail salon. Precision European manicures, pedicures and nail artistry by Elizabeth Lotous.
           </p>
           <div class="mt-6 flex items-center gap-4 text-[11px] tracking-wider-2 uppercase">
-            <a href="https://instagram.com" class="text-paper/70 hover:text-paper nav-link">Instagram</a>
-            <span class="opacity-30">·</span>
-            <a href="https://wa.me/18138973013" class="text-paper/70 hover:text-paper nav-link">WhatsApp</a>
+            <a href="https://instagram.com/lotous_nails" class="text-paper/70 hover:text-paper nav-link">Instagram</a>
           </div>
         </div>
 
@@ -880,7 +951,8 @@
             <li><a href="#gallery" class="text-paper/70 hover:text-paper">Gallery</a></li>
             <li><a href="#about" class="text-paper/70 hover:text-paper">About</a></li>
             <li><a href="#faq" class="text-paper/70 hover:text-paper">FAQ</a></li>
-            <li><a href="#booking" class="text-paper/70 hover:text-paper">Book</a></li>
+            <li><a href="#policy" class="text-paper/70 hover:text-paper">Policy</a></li>
+            <li><a href="https://www.lotousnails.us/s/appointments" target="_blank" rel="noopener noreferrer" class="text-paper/70 hover:text-paper">Book</a></li>
           </ul>
         </nav>
 
@@ -906,7 +978,7 @@
 
       <div class="mt-16 pt-8 border-t border-paper/15 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 text-[11px] tracking-wider-2 uppercase text-paper/50">
         <p>© 2026 Lotous Nails — All rights reserved.</p>
-        <p>South Tampa, FL · By appointment</p>
+        <p>Midtown Tampa, FL · By appointment</p>
       </div>
     </div>
   </footer>
@@ -922,6 +994,21 @@
       });
     }, { threshold: 0.12 });
     document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+    // Specialists: hide any card whose photo is missing / fails to load,
+    // so only real specialists show and a partial last row stays centered.
+    document.querySelectorAll('#team .team-grid > article').forEach(article => {
+      const img = article.querySelector('img');
+      if (!img) return;
+      const hideCard = () => { article.style.display = 'none'; };
+      if (img.complete) {
+        // Already finished loading: naturalWidth === 0 means it failed.
+        if (img.naturalWidth === 0) hideCard();
+      } else {
+        // Still loading: hide only if it errors out.
+        img.addEventListener('error', hideCard);
+      }
+    });
   </script>
 </body>
 </html>
