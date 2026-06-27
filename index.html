@@ -16,6 +16,7 @@
     href="https://db.onlinewebfonts.com/c/c13436e92bba43be20c5385982d9ac2e?family=DistantStroke-Medium"
     rel="stylesheet"
   />
+
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
@@ -107,13 +108,13 @@
     }
     .banner-bg-1 {
       background-color: #2a241d;
-      background-image: linear-gradient(90deg, rgba(14,14,12,0.55) 0%, rgba(14,14,12,0.15) 70%);
+      background-image: linear-gradient(90deg, rgba(14,14,12,0.55) 0%, rgba(14,14,12,0.15) 70%), url('public/salon2.jpg');
       background-size: cover;
       background-position: center;
     }
     .banner-bg-2 {
       background-color: #1f1c17;
-      background-image: linear-gradient(180deg, rgba(14,14,12,0.45) 0%, rgba(14,14,12,0.55) 100%);
+      background-image: linear-gradient(180deg, rgba(14,14,12,0.45) 0%, rgba(14,14,12,0.55) 100%), url('public/1.jpg');
       background-size: cover;
       background-position: center;
     }
@@ -235,7 +236,7 @@
       <div class="flex items-center gap-5">
         <a href="tel:+18135737178" class="hover:text-stone transition">(813) 573-7178</a>
         <span class="hidden md:inline opacity-50">|</span>
-        <a href="https://instagram.com/lotous_nails" target="_blank" rel="noopener noreferrer" class="hidden md:inline hover:text-stone transition">Instagram</a>
+        <a href="https://instagram.com/lotous_nails" class="hidden md:inline hover:text-stone transition">Instagram</a>
       </div>
     </div>
   </div>
@@ -259,7 +260,7 @@
 
       <div class="justify-self-end flex items-center gap-5 text-[11px] tracking-wider-2 uppercase font-medium">
         <a href="#faq" class="hidden md:inline nav-link">FAQ</a>
-        <a href="https://app.squareup.com/appointments/book/pkkni3h2ktcxab/LT56MFW0Y4HWZ/start" target="_blank" rel="noopener noreferrer" class="border border-ink px-5 py-2.5 hover:bg-ink hover:text-paper transition">Book</a>
+        <a href="https://www.lotousnails.us/s/appointments" target="_blank" rel="noopener noreferrer" class="border border-ink px-5 py-2.5 hover:bg-ink hover:text-paper transition">Book</a>
       </div>
     </div>
   </header>
@@ -279,10 +280,13 @@
           <span class="hidden sm:inline">N° 01 — </span>The studio
         </div>
 
+        <!-- Mobile only: fade the photo into the value panel beneath it -->
+        <div class="lg:hidden pointer-events-none absolute inset-x-0 bottom-0 h-28 bg-gradient-to-b from-transparent to-ink"></div>
+
         <!-- CTAs positioned in the lower third of the photo -->
         <div class="relative z-10 flex-1 flex items-end justify-center px-6 lg:px-10 pb-12 lg:pb-16">
           <div class="flex flex-col sm:flex-row gap-4 sm:gap-5 items-center justify-center">
-            <a href="https://app.squareup.com/appointments/book/pkkni3h2ktcxab/LT56MFW0Y4HWZ/start" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center gap-3 bg-paper text-ink min-w-[240px] px-8 py-4 text-[11px] tracking-wider-2 uppercase font-medium hover:bg-stone transition">
+            <a href="https://www.lotousnails.us/s/appointments" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center gap-3 bg-paper text-ink min-w-[240px] px-8 py-4 text-[11px] tracking-wider-2 uppercase font-medium hover:bg-stone transition">
               Book appointment
               <span aria-hidden="true">→</span>
             </a>
@@ -293,8 +297,8 @@
           </div>
         </div>
 
-        <!-- Four-column value strip pinned to bottom of hero -->
-        <div class="relative z-10 mx-auto max-w-[1400px] w-full px-6 lg:px-10 pb-10 lg:pb-14">
+        <!-- Four-column value strip pinned to bottom of hero (desktop only) -->
+        <div class="hidden lg:block relative z-10 mx-auto max-w-[1400px] w-full px-6 lg:px-10 pb-10 lg:pb-14">
           <div class="grid grid-cols-2 lg:grid-cols-4 gap-y-10 gap-x-10 border-t border-paper/25 pt-8 lg:pt-10">
 
             <div class="text-center">
@@ -339,6 +343,46 @@
             </div>
 
           </div>
+        </div>
+      </div>
+
+      <!-- Mobile value list — solid panel for legibility (small screens only) -->
+      <div class="lg:hidden bg-ink text-paper px-7 pt-1 pb-4">
+        <div class="divide-y divide-paper/12">
+
+          <div class="py-7 text-center">
+            <p class="text-paper/45 text-[10px] tracking-widest-2 uppercase mb-2.5">N° 01</p>
+            <p class="font-display-alt text-[1.55rem] leading-[1.12]">Medical-grade hygiene</p>
+            <p class="mt-2.5 text-paper/60 text-[13px] leading-[1.7] tracking-wide">
+              Sterilized tooling <span class="text-paper/30 mx-1">/</span> Single-use files
+            </p>
+          </div>
+
+          <div class="py-7 text-center">
+            <p class="text-paper/45 text-[10px] tracking-widest-2 uppercase mb-2.5">N° 02</p>
+            <p class="font-display-alt text-[1.55rem] leading-[1.12]">European precision</p>
+            <p class="mt-2.5 text-paper/60 text-[13px] leading-[1.7] tracking-wide">
+              Dry technique <span class="text-paper/30 mx-1">/</span> No water <span class="text-paper/30 mx-1">/</span> No cutting
+            </p>
+          </div>
+
+          <div class="py-7 text-center">
+            <p class="text-paper/45 text-[10px] tracking-widest-2 uppercase mb-2.5">N° 03</p>
+            <p class="font-display-alt text-[1.55rem] leading-[1.12]">Signature sets</p>
+            <p class="mt-2.5 text-paper/60 text-[13px] leading-[1.7] tracking-wide">
+              Refined <span class="text-paper/30 mx-1">/</span> Intentional <span class="text-paper/30 mx-1">/</span> Built to last
+            </p>
+          </div>
+
+          <div class="py-7 text-center">
+            <p class="text-paper/45 text-[10px] tracking-widest-2 uppercase mb-2.5">N° 04</p>
+            <p class="font-display-alt text-[1.55rem] leading-[1.12]">By appointment</p>
+            <p class="mt-2.5 text-paper/60 text-[13px] leading-[1.7] tracking-wide">
+              3302 W Cypress St, Tampa<br/>
+              <span class="text-paper/80">(813) 573-7178</span>
+            </p>
+          </div>
+
         </div>
       </div>
     </section>
@@ -417,7 +461,7 @@
             <p class="eyebrow text-clay mb-2">Lead Specialist</p>
             <h3 class="font-display text-[2.4rem] lg:text-[2.8rem] leading-tight mb-2">Elizabeth</h3>
             <p class="text-ash text-[13px] leading-relaxed mb-3">Russian Manicure · Founder · Gel Extensions</p>
-            <a href="https://instagram.com/elizabeth_lotous" target="_blank" rel="noopener noreferrer" class="text-[10px] tracking-widest-2 uppercase text-ink/60 hover:text-ink nav-link">@elizabeth_lotous</a>
+            <a href="https://instagram.com/elizabeth_lotous" class="text-[10px] tracking-widest-2 uppercase text-ink/60 hover:text-ink nav-link">@elizabeth_lotous</a>
           </article>
 
           <article class="group">
@@ -483,7 +527,7 @@
         </div>
 
         <div class="mt-16 text-center">
-          <a href="https://app.squareup.com/appointments/book/pkkni3h2ktcxab/LT56MFW0Y4HWZ/start" target="_blank" rel="noopener noreferrer" class="ed-link text-[11px] tracking-wider-2 uppercase font-medium">Book with a specialist →</a>
+          <a href="https://www.lotousnails.us/s/appointments" target="_blank" rel="noopener noreferrer" class="ed-link text-[11px] tracking-wider-2 uppercase font-medium">Book with a specialist →</a>
         </div>
       </div>
     </section>
@@ -579,7 +623,7 @@
           <p class="text-ash text-sm font-light max-w-md">
             Add-ons available — French tips, nail art, soak-off, and reinforcement layers — discussed during consultation.
           </p>
-          <a href="https://app.squareup.com/appointments/book/pkkni3h2ktcxab/LT56MFW0Y4HWZ/start" target="_blank" rel="noopener noreferrer" class="ed-link text-[11px] tracking-wider-2 uppercase font-medium">Reserve your time →</a>
+          <a href="https://www.lotousnails.us/s/appointments" target="_blank" rel="noopener noreferrer" class="ed-link text-[11px] tracking-wider-2 uppercase font-medium">Reserve your time →</a>
         </div>
       </div>
     </section>
@@ -706,7 +750,7 @@
           <a href="#" class="col-span-6 md:col-span-3 aspect-square md:aspect-[5/6] bg-stone/60 overflow-hidden block group">
             <img src="work-4.jpg" alt="Nail design — minimal" class="h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.03]" onerror="this.style.display='none'"/>
           </a>
-          <a href="#" class="col-span-12 md:col-span-6 aspect-[4/3] md:aspect-[17/10] bg-stone/60 overflow-hidden block group">
+          <a href="#" class="col-span-6 md:col-span-6 aspect-square md:aspect-[17/10] bg-stone/60 overflow-hidden block group">
             <img src="work-5.jpg" alt="Nail design — extensions" class="h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.03]" onerror="this.style.display='none'"/>
           </a>
         </div>
@@ -904,7 +948,7 @@
           Online booking takes under a minute. Choose your service, pick your time, and you're set.
         </p>
         <div class="mt-12 flex flex-col sm:flex-row gap-4 sm:gap-6 items-center justify-center">
-          <a href="https://app.squareup.com/appointments/book/pkkni3h2ktcxab/LT56MFW0Y4HWZ/start" target="_blank" rel="noopener noreferrer" class="bg-paper text-ink px-10 py-4 text-[11px] tracking-wider-2 uppercase font-medium hover:bg-stone transition">
+          <a href="https://www.lotousnails.us/s/appointments" target="_blank" rel="noopener noreferrer" class="bg-paper text-ink px-10 py-4 text-[11px] tracking-wider-2 uppercase font-medium hover:bg-stone transition">
             Book appointment →
           </a>
           <a href="tel:+18135737178" class="text-paper text-[11px] tracking-wider-2 uppercase font-medium ed-link hover:text-stone">
@@ -939,7 +983,7 @@
             South Tampa's premier luxury nail salon. Precision European manicures, pedicures and nail artistry by Elizabeth Lotous.
           </p>
           <div class="mt-6 flex items-center gap-4 text-[11px] tracking-wider-2 uppercase">
-            <a href="https://instagram.com/lotous_nails" target="_blank" rel="noopener noreferrer" class="text-paper/70 hover:text-paper nav-link">Instagram</a>
+            <a href="https://instagram.com/lotous_nails" class="text-paper/70 hover:text-paper nav-link">Instagram</a>
           </div>
         </div>
 
@@ -951,7 +995,7 @@
             <li><a href="#about" class="text-paper/70 hover:text-paper">About</a></li>
             <li><a href="#faq" class="text-paper/70 hover:text-paper">FAQ</a></li>
             <li><a href="#policy" class="text-paper/70 hover:text-paper">Policy</a></li>
-            <li><a href="https://app.squareup.com/appointments/book/pkkni3h2ktcxab/LT56MFW0Y4HWZ/start" target="_blank" rel="noopener noreferrer" class="text-paper/70 hover:text-paper">Book</a></li>
+            <li><a href="https://www.lotousnails.us/s/appointments" target="_blank" rel="noopener noreferrer" class="text-paper/70 hover:text-paper">Book</a></li>
           </ul>
         </nav>
 
@@ -1009,7 +1053,5 @@
       }
     });
   </script>
-
-  <!-- Start Square Appointments Embed Code --><script src='https://square.site/appointments/buyer/widget/pkkni3h2ktcxab/LT56MFW0Y4HWZ.js'></script><!-- End Square Appointments Embed Code -->
 </body>
 </html>
